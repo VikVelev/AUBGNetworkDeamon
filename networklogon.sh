@@ -8,27 +8,27 @@ username=0
 key=0
 typeof=0
 credentialsArr=( )
-prefferencesArr=( )
+preferencesArr=( )
 
-#prefferenceArr is an array with prefferences, [0] is the default usage
-#Select prefferences
-if [ -f prefferences -a -r prefferences ]; then
-    echo "Prefferences file found..."
+#preferenceArr is an array with preferences, [0] is the default usage
+#Select preferences
+if [ -f preferences -a -r preferences ]; then
+    echo "Preferences file found..."
 
     lc=0
     while read -r LINE || [[ -n $LINE ]]; do
-        prefferenceArr[$lc]=$LINE
+        preferenceArr[$lc]=$LINE
         let lc+=1
-    done < prefferences
-    typeof=${prefferenceArr[0]}
-    sleeptime=${prefferenceArr[1]}
+    done < preferences
+    typeof=${preferenceArr[0]}
+    sleeptime=${preferenceArr[1]}
 else
     echo "Single usage or use as a deamon in the background? (type 1 or 2)"
-    echo "(You can change it by simply deleting the prefferences file and running the script again.)"
+    echo "(You can change it by simply deleting the preferences file and running the script again.)"
 
     while true; do
         read typeof
-        echo $typeof >> prefferences
+        echo $typeof >> preferences
 
         case $typeof in
             ''|*[!0-9]*) echo "NaN, Try again."; continue;;
@@ -49,7 +49,7 @@ else
                         echo "That's too frequent."
                         continue
                     else
-                        echo $sleeptime >> prefferences        
+                        echo $sleeptime >> preferences        
                         break
                     fi
                 done
@@ -93,7 +93,7 @@ while true; do
 
     post_data[0]=bash curl --data "fname=wba_login&username=$username&key=$key" http://wlc8.lib/aaa/wba_form.html?wbaredirect=http://www.gstatic.com/generate_204 &> /dev/null
     post_data[1]=bash curl --data "fname=wba_login&username=$username&key=$key" http://wlc2801.sc/aaa/wba_form.html?wbaredirect=http://www.gstatic.com/generate_204 &> /dev/null
-    
+
     if [ -z ${post_data[0]} -a -z ${post_data[1]} ]; then
         #Check for data response here
         echo "Login failed. Possibly already logged in or unknown network."
