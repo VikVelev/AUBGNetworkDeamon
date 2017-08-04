@@ -96,7 +96,7 @@ while true; do
 
     if [ -z ${post_data[0]} -a -z ${post_data[1]} ]; then
         #Check for data response here
-        echo "Login failed. Possibly already logged in or unknown network."
+        echo "Login failed. Possibly already logged in or unknown network or maybe a success, who knows."
         if [ $typeof -eq 1 ]; then
             exit;
         fi
