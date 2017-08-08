@@ -91,9 +91,10 @@ fi
 #Deamon
 while true; do
 
-    post_data[0]=bash curl --data "fname=wba_login&username=$username&key=$key" http://wlc8.lib/aaa/wba_form.html?wbaredirect=http://www.gstatic.com/generate_204 &> /dev/null
-    post_data[1]=bash curl --data "fname=wba_login&username=$username&key=$key" http://wlc2801.sc/aaa/wba_form.html?wbaredirect=http://www.gstatic.com/generate_204 &> /dev/null
-
+    post_data[0]=bash curl --data "fname=wba_login&username=$username&key=$key" http://wlc8.lib/aaa/wba_form.html?wbaredirect=http://www.gstatic.com/generate_204 #&> /dev/null
+    post_data[1]=bash curl --data "fname=wba_login&username=$username&key=$key" http://wlc2801.sc/aaa/wba_form.html?wbaredirect=http://www.gstatic.com/generate_204 #&> /dev/null
+    post_data[2]=bash curl --data "fname=wba_login&username=$username&key=$key" http://wlc2802.sc/aaa/wba_form.html?wbaredirect=http://www.gstatic.com/generate_204 #&> /dev/null
+    
     if [ -z ${post_data[0]} -a -z ${post_data[1]} ]; then
         #Check for data response here
         echo "Login failed. Possibly already logged in or unknown network or maybe a success, who knows."
